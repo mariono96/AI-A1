@@ -259,4 +259,19 @@ public class HMM{
 		}
 		return moveState;
 	}
+
+ public double[] alphaPass(double[] probaPrevState, int numObservation){
+            double[] returnValue = new double[6];
+            double value ;
+            for (int i = 0 ; i < 6 ; i++){
+                value = 0;
+                for (int j = 0; j < 6; j++){
+                    value = value + probaPrevState[j]*A.get(j,i);
+                }
+                value = value * B.get(i, numObservation);
+                returnValue[i] = value;
+            }
+            return returnValue;
+        }
+
 }
